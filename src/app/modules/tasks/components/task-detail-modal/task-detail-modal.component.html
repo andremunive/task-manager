@@ -1,0 +1,25 @@
+<div class="modal-header">
+  <h2>{{ task.attributes.name }}</h2>
+  <button mat-icon-button (click)="closeDialog()" class="close-button">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+
+<mat-dialog-content>
+  <p><strong>Status:</strong> {{ task.attributes.status }}</p>
+  <p><strong>Deadline:</strong> {{ task.attributes.deadline | date }}</p>
+  <p><strong>Description:</strong> {{ task.attributes.description }}</p>
+
+  <h3>Assigned Persons</h3>
+  <div *ngIf="task.attributes.people.data.length > 0; else noPeople">
+    <ul>
+      <li *ngFor="let person of task.attributes.people.data">
+        <strong>{{ person.attributes.name }}</strong> - Age:
+        {{ person.attributes.age }}
+        <br />
+        <em>Skills: {{ person.attributes.skills.join(", ") }}</em>
+      </li>
+    </ul>
+  </div>
+  <ng-template #noPeople>No assigned persons</ng-template>
+</mat-dialog-content>

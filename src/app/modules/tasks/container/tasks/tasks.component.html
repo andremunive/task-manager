@@ -1,0 +1,16 @@
+<div *ngIf="!(_responsive.isMobile$ | async)">
+  <app-table
+    [tasks]="tasks.data"
+    [totalTasks]="tasks.meta.pagination.total"
+    [pageSize]="tasks.meta.pagination.pageSize"
+  >
+  </app-table>
+</div>
+
+<div *ngIf="_responsive.isMobile$ | async">
+  <app-card
+    [tasks]="tasks.data"
+    [totalTasks]="tasks.meta.pagination.total"
+    [pageSize]="tasks.meta.pagination.pageSize"
+  ></app-card>
+</div>
