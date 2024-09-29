@@ -1,0 +1,31 @@
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.close-button {
+  cursor: pointer;
+  color: #333;
+}
+
+.close-button mat-icon {
+  font-size: 24px;
+}
+
+mat-dialog-content {
+  max-height: 60vh;
+  overflow-y: auto;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  mat-dialog-content {
+    max-height: 80vh;
+  }
+}

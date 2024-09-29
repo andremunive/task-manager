@@ -1,0 +1,19 @@
+.task-card-container {
+  margin-bottom: 20px;
+}
+
+.task-card {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mat-card-content p {
+  margin: 5px 0;
+}

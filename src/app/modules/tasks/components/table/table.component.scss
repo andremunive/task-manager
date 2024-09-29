@@ -1,0 +1,12 @@
+.task-table-container {
+  margin-bottom: 20px;
+}
+
+.clickable-row {
+  cursor: pointer; // Cambia el cursor a pointer
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f0f0f0; // Cambia el fondo cuando se hace hover
+  }
+}
