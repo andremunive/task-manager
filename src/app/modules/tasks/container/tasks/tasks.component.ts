@@ -37,8 +37,9 @@ export class TasksComponent {
       },
     },
   };
-  isMobile: boolean = false;
-  showFilters: boolean = false;
+  selectedStatus = '';
+  isMobile = false;
+  showFilters = false;
 
   constructor(
     private _task: TaskService,
@@ -51,15 +52,24 @@ export class TasksComponent {
   }
 
   loadTasks(page: number = 1, pageSize: number = 5) {
+    const status = this.selectedStatus;
     this._task
-      .getAllTasks(page.toString(), pageSize.toString())
+      .getAllTasks(page.toString(), pageSize.toString(), status)
       .subscribe((res: TaskResponse) => {
         this.tasks = res;
       });
   }
 
+  onStatusFilterChange(status: string): void {
+    this.selectedStatus = status;
+    this.loadTasks();
+  }
+
   toggleFilters() {
     this.showFilters = !this.showFilters;
+    if (!this.showFilters) {
+      this.onStatusFilterChange('');
+    }
   }
 
   openNewTaskModal(): void {
