@@ -54,3 +54,9 @@ La información es almacenada y gestionada en **Strapi**, un CMS que permite org
 Puedes acceder a la aplicación desplegada en el siguiente enlace:
 
 [Enlace a la aplicación](https://taskmasnager.netlify.app)
+
+## Video sustentacion
+
+Puedes acceder a la carpeta con dos videos, uno haciendo un recorrido general por la aplicacion y otro analizando el codigo:
+
+[Enlace a la carpeta de drive](https://drive.google.com/drive/folders/1aauyVZUoN6WBnJOihwqXPTmFzhX5-o2A?usp=sharing)
