@@ -1,8 +1,15 @@
 .modal-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
+  padding: 6px 12px;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  h2 {
+    margin: 0;
+  }
+  .action-buttons {
+    display: flex;
+  }
 }
 
 .close-button {
@@ -18,6 +25,7 @@ mat-dialog-content {
   max-height: 60vh;
   overflow-y: auto;
   font-size: 1rem;
+  padding: 0 12px !important;
 }
 
 @media (max-width: 768px) {

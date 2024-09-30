@@ -1,11 +1,13 @@
 <div class="modal-header">
   <h2>{{ task.attributes.name }}</h2>
-  <button mat-icon-button (click)="openEditModal()" class="close-button">
-    <mat-icon>edit</mat-icon>
-  </button>
-  <button mat-icon-button (click)="closeDialog()" class="close-button">
-    <mat-icon>close</mat-icon>
-  </button>
+  <div class="action-buttons">
+    <button mat-icon-button color="primary" (click)="openEditModal()">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button (click)="closeDialog()" class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </div>
 
 <mat-dialog-content>
@@ -13,7 +15,7 @@
   <p><strong>Deadline:</strong> {{ task.attributes.deadline | date }}</p>
   <p><strong>Description:</strong> {{ task.attributes.description }}</p>
 
-  <h3>Assigned Persons</h3>
+  <h3><strong>Assigned Persons:</strong></h3>
   <div *ngIf="task.attributes.people.data.length > 0; else noPeople">
     <ul>
       <li *ngFor="let person of task.attributes.people.data">

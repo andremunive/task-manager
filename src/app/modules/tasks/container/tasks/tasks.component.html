@@ -12,11 +12,6 @@
 
   <div *ngIf="showFilters" @filterAnimation class="filter-container">
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
-      <input matInput placeholder="Enter task name" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
       <mat-label>Status</mat-label>
       <mat-select>
         <mat-option value="Pending">Pending</mat-option>
@@ -25,11 +20,6 @@
         <mat-option value="Ready to test">Ready to test</mat-option>
         <mat-option value="Completed">Completed</mat-option>
       </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Assigned</mat-label>
-      <input matInput placeholder="Enter assigned person" />
     </mat-form-field>
   </div>
 

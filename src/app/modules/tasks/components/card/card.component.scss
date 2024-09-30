@@ -1,19 +1,19 @@
 .task-card-container {
   margin-bottom: 20px;
-}
-
-.task-card {
-  width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.mat-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mat-card-content p {
-  margin: 5px 0;
+  .card {
+    margin-bottom: 20px;
+    mat-card {
+      padding: 8px;
+      mat-card-header {
+        padding: 0;
+      }
+      mat-card-content {
+        padding: 0;
+        margin-top: 12px;
+        p {
+          margin: 0 0 6px;
+        }
+      }
+    }
+  }
 }

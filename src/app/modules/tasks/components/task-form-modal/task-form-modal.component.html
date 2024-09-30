@@ -1,118 +1,121 @@
-<div class="modal-header">
-  <h2>{{ data ? "Edit Task" : "New Task" }}</h2>
-  <button mat-icon-button (click)="close()" class="close-button">
-    <mat-icon>close</mat-icon>
-  </button>
-</div>
-
-<mat-dialog-content>
-  <form [formGroup]="taskForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Task Name</mat-label>
-      <input matInput formControlName="name" placeholder="Enter task name" />
-      <mat-error *ngIf="taskForm.get('name')?.hasError('required')">
-        Task name is required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        placeholder="Enter description"
-      ></textarea>
-      <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
-        Description is required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Deadline</mat-label>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        formControlName="deadline"
-        placeholder="Choose a date"
-      />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="taskForm.get('deadline')?.hasError('required')">
-        Deadline is required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option value="Pending">Pending</mat-option>
-        <mat-option value="Approved">Approved</mat-option>
-        <mat-option value="In progress">In progress</mat-option>
-        <mat-option value="Ready to test">Ready to test</mat-option>
-        <mat-option value="Completed">Completed</mat-option>
-      </mat-select>
-      <mat-error *ngIf="taskForm.get('status')?.hasError('required')">
-        Status is required
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Assigned Persons</mat-label>
-      <input
-        matInput
-        formControlName="assignedPersons"
-        [matAutocomplete]="auto"
-        (focus)="displayAllPersons()"
-        (click)="displayAllPersons()"
-        placeholder="Choose assigned person"
-      />
-      <mat-autocomplete
-        #auto="matAutocomplete"
-        (optionSelected)="selectPerson($event.option.value)"
-      >
-        <mat-option
-          *ngFor="let person of filteredPersons | async"
-          [value]="person"
-        >
-          {{ person.attributes.name }}
-        </mat-option>
-      </mat-autocomplete>
-      <mat-error
-        *ngIf="taskForm.get('assignedPersons')?.hasError('noPersonsSelected')"
-      >
-        Please select at least one person.
-      </mat-error>
-    </mat-form-field>
-  </form>
-</mat-dialog-content>
-
-<div class="selected-persons" *ngIf="selectedPersons.length > 0">
-  <h3>Selected Persons:</h3>
-
-  <div class="person-card" *ngFor="let selected of selectedPersons">
-    <div class="card-content">
-      <h4>{{ selected.attributes.name }}</h4>
-      <p><strong>Age:</strong> {{ selected.attributes.age }}</p>
-      <p>
-        <strong>Skills:</strong> {{ selected.attributes.skills.join(", ") }}
-      </p>
-    </div>
-
-    <!-- Icono de eliminación (bote de basura) en la esquina inferior derecha -->
-    <mat-icon class="delete-icon" (click)="removePerson(selected)"
-      >delete</mat-icon
-    >
+<main>
+  <div class="modal-header">
+    <h2>{{ data ? "Edit Task" : "New Task" }}</h2>
+    <button mat-icon-button (click)="close()" class="close-button">
+      <mat-icon>close</mat-icon>
+    </button>
   </div>
-</div>
 
-<mat-dialog-actions align="end">
-  <button mat-button (click)="cancel()">Cancel</button>
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="save()"
-    [disabled]="!taskForm.valid"
-  >
-    Save
-  </button>
-</mat-dialog-actions>
+  <mat-dialog-content>
+    <form [formGroup]="taskForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Task Name</mat-label>
+        <input matInput formControlName="name" placeholder="Enter task name" />
+        <mat-error *ngIf="taskForm.get('name')?.hasError('required')">
+          Task name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          formControlName="description"
+          placeholder="Enter description"
+        ></textarea>
+        <mat-error *ngIf="taskForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Deadline</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="deadline"
+          placeholder="Choose a date"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="taskForm.get('deadline')?.hasError('required')">
+          Deadline is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="Pending">Pending</mat-option>
+          <mat-option value="Approved">Approved</mat-option>
+          <mat-option value="In progress">In progress</mat-option>
+          <mat-option value="Ready to test">Ready to test</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+        <mat-error *ngIf="taskForm.get('status')?.hasError('required')">
+          Status is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Assigned Persons</mat-label>
+        <input
+          matInput
+          formControlName="assignedPersons"
+          [matAutocomplete]="auto"
+          (focus)="displayAllPersons()"
+          (click)="displayAllPersons()"
+          placeholder="Choose assigned person"
+        />
+        <mat-autocomplete
+          #auto="matAutocomplete"
+          (optionSelected)="selectPerson($event.option.value)"
+        >
+          <mat-option
+            *ngFor="let person of filteredPersons | async"
+            [value]="person"
+          >
+            {{ person.attributes.name }}
+          </mat-option>
+        </mat-autocomplete>
+        <mat-error
+          *ngIf="taskForm.get('assignedPersons')?.hasError('noPersonsSelected')"
+        >
+          Please select at least one person.
+        </mat-error>
+      </mat-form-field>
+    </form>
+  </mat-dialog-content>
+
+  <div class="selected-persons-container">
+    <h3>Selected Persons:</h3>
+    <div class="selected-persons" *ngIf="selectedPersons.length > 0">
+      <div class="person-card" *ngFor="let selected of selectedPersons">
+        <div class="card-content">
+          <h4>{{ selected.attributes.name }}</h4>
+          <p><strong>Age:</strong> {{ selected.attributes.age }}</p>
+          <p>
+            <strong>Skills:</strong> {{ selected.attributes.skills.join(", ") }}
+          </p>
+        </div>
+
+        <!-- Icono de eliminación (bote de basura) en la esquina inferior derecha -->
+        <mat-icon class="delete-icon" (click)="removePerson(selected)"
+          >delete</mat-icon
+        >
+      </div>
+    </div>
+  </div>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="save()"
+      [disabled]="!taskForm.valid"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+</main>
