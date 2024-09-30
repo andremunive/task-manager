@@ -51,3 +51,6 @@ La información es almacenada y gestionada en **Strapi**, un CMS que permite org
 
 ## Despliegue
 
+Puedes acceder a la aplicación desplegada en el siguiente enlace:
+
+[Enlace a la aplicación](https://taskmasnager.netlify.app)
