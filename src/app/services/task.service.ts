@@ -15,8 +15,17 @@ import {
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  getAllTasks(page: string, pageSize: string): Observable<TaskResponse> {
-    const url = `${environment.URL_BASE}${environment.host.tasks.methods.general}?populate=people&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+  getAllTasks(
+    page: string,
+    pageSize: string,
+    status?: string
+  ): Observable<TaskResponse> {
+    let url = `${environment.URL_BASE}${environment.host.tasks.methods.general}?populate=people&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+
+    if (status) {
+      url += `&filters[status][$eq]=${status}`;
+    }
+
     return this.http.get<TaskResponse>(url);
   }
 
