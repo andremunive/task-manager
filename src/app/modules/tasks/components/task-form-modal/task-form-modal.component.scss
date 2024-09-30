@@ -1,0 +1,61 @@
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.close-button {
+  cursor: pointer;
+  color: #333;
+}
+
+mat-dialog-content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  mat-dialog-content {
+    max-height: 80vh;
+  }
+}
+.selected-persons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.person-card {
+  width: 200px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .card-content {
+    h4 {
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 4px 0;
+    }
+  }
+
+  .delete-icon {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    cursor: pointer;
+    color: red;
+  }
+}

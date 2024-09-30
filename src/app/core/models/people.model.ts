@@ -1,5 +1,13 @@
 export interface People {
   data: PersonData[];
+  meta?: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
 }
 
 export interface PersonData {
