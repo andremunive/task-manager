@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
+import {
+  MatDialogRef,
+  MatDialogModule,
+  MatDialog,
+} from '@angular/material/dialog';
 import { PersonService } from 'src/app/services/person.service';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { PersonData } from 'src/app/core/models/people.model';
+import { AddPersonModalComponent } from '../add-person-modal/add-person-modal.component';
 
 @Component({
   selector: 'app-people-modal',
@@ -17,8 +22,9 @@ export class PeopleModalComponent implements OnInit {
   people: PersonData[] = [];
 
   constructor(
+    private dialog: MatDialog,
     private dialogRef: MatDialogRef<PeopleModalComponent>,
-    private personService: PersonService
+    private _person: PersonService
   ) {}
 
   ngOnInit(): void {
@@ -26,7 +32,7 @@ export class PeopleModalComponent implements OnInit {
   }
 
   loadPeople(): void {
-    this.personService.getAllPeople().subscribe((res) => {
+    this._person.getAllPeople().subscribe((res) => {
       this.people = res.data;
     });
   }
@@ -35,5 +41,17 @@ export class PeopleModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  addPerson(): void {}
+  addPerson(): void {
+    this.dialogRef.close();
+
+    const dialogRef = this.dialog.open(AddPersonModalComponent, {
+      width: '400px',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.loadPeople();
+      }
+    });
+  }
 }
