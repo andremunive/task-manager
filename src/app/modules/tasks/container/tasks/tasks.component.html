@@ -5,9 +5,14 @@
     <button mat-raised-button (click)="toggleFilters()" class="filter-button">
       <mat-icon>filter_list</mat-icon> Filtros
     </button>
-    <button mat-button color="primary" (click)="openNewTaskModal()">
-      <mat-icon>add</mat-icon>Add new task
-    </button>
+    <div class="actions">
+      <button mat-button color="primary" (click)="openNewTaskModal()">
+        <mat-icon>add</mat-icon>Add new task
+      </button>
+      <button mat-button color="primary" (click)="openPeopleModal()">
+        <mat-icon>person</mat-icon>Manage people
+      </button>
+    </div>
   </div>
 
   <div *ngIf="showFilters" @filterAnimation class="filter-container">

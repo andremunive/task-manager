@@ -12,6 +12,7 @@ import { ResponsiveService } from 'src/app/services/responsive.service';
 import { TaskService } from 'src/app/services/task.service';
 import { TaskFormModalComponent } from '../../components/task-form-modal/task-form-modal.component';
 import { PageEvent } from '@angular/material/paginator';
+import { PeopleModalComponent } from '../../components/people-modal/people-modal.component';
 
 @Component({
   selector: 'app-tasks',
@@ -81,6 +82,13 @@ export class TasksComponent {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
       }
+    });
+  }
+
+  openPeopleModal(): void {
+    this.dialog.open(PeopleModalComponent, {
+      width: '600px',
+      height: 'auto',
     });
   }
 

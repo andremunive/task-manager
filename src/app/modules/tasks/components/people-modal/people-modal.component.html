@@ -1,0 +1,21 @@
+<mat-dialog-content>
+  <div class="people-modal-header">
+    <h2>People</h2>
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <div class="people-cards-container">
+    <div class="add-person-card" (click)="addPerson()">
+      <mat-icon class="add-icon">add</mat-icon>
+      <p>Add person</p>
+    </div>
+
+    <div *ngFor="let person of people" class="person-card">
+      <h3>{{ person.attributes.name }}</h3>
+      <p>Age: {{ person.attributes.age }}</p>
+      <p>Skills: {{ person.attributes.skills.join(", ") }}</p>
+    </div>
+  </div>
+</mat-dialog-content>
