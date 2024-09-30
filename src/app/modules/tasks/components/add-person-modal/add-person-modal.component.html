@@ -1,0 +1,78 @@
+<h2 mat-dialog-title>Agregar Persona</h2>
+
+<div mat-dialog-content class="form-container">
+  <form [formGroup]="personForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" />
+      <mat-error
+        *ngIf="
+          personForm.get('name')?.invalid && personForm.get('name')?.touched
+        "
+      >
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Age</mat-label>
+      <input matInput type="number" placeholder="Edad" formControlName="age" />
+      <mat-error
+        *ngIf="
+          personForm.get('age')?.hasError('required') &&
+          personForm.get('age')?.touched
+        "
+      >
+        Age is required
+      </mat-error>
+      <mat-error
+        *ngIf="
+          personForm.get('age')?.hasError('min') &&
+          personForm.get('age')?.touched
+        "
+      >
+        Age must be over 18 years old
+      </mat-error>
+    </mat-form-field>
+
+    <div class="skill">
+      <mat-form-field class="skills-input" appearance="outline">
+        <mat-label>Skills</mat-label>
+        <input
+          matInput
+          placeholder="Añade una habilidad"
+          formControlName="skills"
+        />
+      </mat-form-field>
+
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="addSkill()"
+      >
+        Add
+      </button>
+    </div>
+
+    <div class="skills-container">
+      <div *ngFor="let skill of skills; let i = index" class="skill-chip">
+        {{ skill }}
+        <button mat-icon-button (click)="removeSkill(i)">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancelar</button>
+  <button
+    mat-button
+    [disabled]="personForm.invalid || skills.length == 0"
+    (click)="save()"
+  >
+    Guardar
+  </button>
+</div>

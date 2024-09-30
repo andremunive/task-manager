@@ -19,7 +19,7 @@ export interface PersonAttributes {
   name: string;
   age: string;
   skills: string[];
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
 }

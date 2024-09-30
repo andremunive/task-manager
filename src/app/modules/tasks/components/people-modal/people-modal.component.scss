@@ -13,10 +13,14 @@
   padding: 20px;
   cursor: pointer;
   text-align: center;
-}
-
-.add-icon {
-  font-size: 48px;
+  .add-icon {
+    font-size: 48px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .person-card {
