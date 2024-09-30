@@ -15,10 +15,20 @@ export interface TaskAttributes {
   deadline: string;
   status: string;
   description: string;
-  createdAt: string;
-  updatedAt: string;
-  publishedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
   people: People;
+}
+export interface TaskModel {
+  name: string;
+  deadline: string;
+  status: string;
+  description: string;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+  people: number[];
 }
 
 export interface Meta {

@@ -1,16 +1,52 @@
-<div *ngIf="!(_responsive.isMobile$ | async)">
-  <app-table
-    [tasks]="tasks.data"
-    [totalTasks]="tasks.meta.pagination.total"
-    [pageSize]="tasks.meta.pagination.pageSize"
-  >
-  </app-table>
-</div>
+<main>
+  <h1>Tasks Manager</h1>
 
-<div *ngIf="_responsive.isMobile$ | async">
-  <app-card
-    [tasks]="tasks.data"
-    [totalTasks]="tasks.meta.pagination.total"
-    [pageSize]="tasks.meta.pagination.pageSize"
-  ></app-card>
-</div>
+  <div class="options-menu">
+    <button mat-raised-button (click)="toggleFilters()" class="filter-button">
+      <mat-icon>filter_list</mat-icon> Filtros
+    </button>
+    <button mat-button color="primary" (click)="openNewTaskModal()">
+      <mat-icon>add</mat-icon>Add new task
+    </button>
+  </div>
+
+  <div *ngIf="showFilters" @filterAnimation class="filter-container">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Enter task name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select>
+        <mat-option value="Pending">Pending</mat-option>
+        <mat-option value="Approved">Approved</mat-option>
+        <mat-option value="In progress">In progress</mat-option>
+        <mat-option value="Ready to test">Ready to test</mat-option>
+        <mat-option value="Completed">Completed</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Assigned</mat-label>
+      <input matInput placeholder="Enter assigned person" />
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="!(_responsive.isMobile$ | async)">
+    <app-table
+      [tasks]="tasks.data"
+      [totalTasks]="tasks.meta.pagination.total"
+      [pageSize]="tasks.meta.pagination.pageSize"
+    >
+    </app-table>
+  </div>
+
+  <div *ngIf="_responsive.isMobile$ | async">
+    <app-card
+      [tasks]="tasks.data"
+      [totalTasks]="tasks.meta.pagination.total"
+      [pageSize]="tasks.meta.pagination.pageSize"
+    ></app-card>
+  </div>
+</main>
