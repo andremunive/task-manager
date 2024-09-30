@@ -8,5 +8,8 @@ main {
     display: flex;
     justify-content: space-between;
     margin-bottom: 12px;
+    .actions {
+      display: flex;
+    }
   }
 }
