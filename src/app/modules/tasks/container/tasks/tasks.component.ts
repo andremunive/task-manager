@@ -11,6 +11,7 @@ import { TaskResponse } from 'src/app/core/models/task.model';
 import { ResponsiveService } from 'src/app/services/responsive.service';
 import { TaskService } from 'src/app/services/task.service';
 import { TaskFormModalComponent } from '../../components/task-form-modal/task-form-modal.component';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-tasks',
@@ -49,27 +50,31 @@ export class TasksComponent {
     this.loadTasks();
   }
 
-  loadTasks(page: number = 1) {
-    this._task.getAllTasks('1', '10').subscribe((res: TaskResponse) => {
-      this.tasks = res;
-    });
+  loadTasks(page: number = 1, pageSize: number = 5) {
+    this._task
+      .getAllTasks(page.toString(), pageSize.toString())
+      .subscribe((res: TaskResponse) => {
+        this.tasks = res;
+      });
   }
 
   toggleFilters() {
     this.showFilters = !this.showFilters;
   }
 
-  // Método para abrir el modal
   openNewTaskModal(): void {
     const dialogRef = this.dialog.open(TaskFormModalComponent, {
       width: '400px',
-      maxWidth: '90vw', // Hacerlo responsive para mobile
+      maxWidth: '90vw',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        // Aquí puedes hacer algo con los datos de la nueva tarea, como enviarlos al backend
       }
     });
+  }
+
+  onPageChange(event: PageEvent) {
+    this.loadTasks(event.pageIndex + 1, event.pageSize);
   }
 }

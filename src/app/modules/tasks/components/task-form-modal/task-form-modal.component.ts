@@ -113,11 +113,10 @@ export class TaskFormModalComponent implements OnInit {
         description: this.taskForm.value.description,
         deadline: this.taskForm.value.deadline,
         status: this.taskForm.value.status,
-        people: this.selectedPersons.map((person) => person.id), // Enviar solo los IDs de las personas
+        people: this.selectedPersons.map((person) => person.id),
       };
 
       if (this.data?.task?.id) {
-        // Modo edición: actualiza la tarea
         this._task.updateTask(this.data.task.id, taskData).subscribe(
           (response) => {
             this._showToast('Task updated successfully');
@@ -128,7 +127,6 @@ export class TaskFormModalComponent implements OnInit {
           }
         );
       } else {
-        // Modo creación: crea una nueva tarea
         this._task.createTask(taskData).subscribe(
           (response) => {
             this._showToast('Task created successfully');
@@ -209,9 +207,9 @@ export class TaskFormModalComponent implements OnInit {
 
   private _showToast(message: string): void {
     this._snackBar.open(message, 'Close', {
-      duration: 3000, // Duración en milisegundos
-      verticalPosition: 'top', // Posición en la pantalla
-      horizontalPosition: 'center', // Posición en la pantalla
+      duration: 3000,
+      verticalPosition: 'top',
+      horizontalPosition: 'center',
     });
   }
 }

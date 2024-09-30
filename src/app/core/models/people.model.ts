@@ -17,8 +17,8 @@ export interface PersonData {
 
 export interface PersonAttributes {
   name: string;
-  age: string; // En este caso, el "age" es un string
-  skills: string[]; // Lista de habilidades
+  age: string;
+  skills: string[];
   createdAt: string;
   updatedAt: string;
   publishedAt: string;

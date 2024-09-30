@@ -32,11 +32,10 @@ export class TaskDetailModalComponent {
   openEditModal(): void {
     this.dialogRef.close();
 
-    // Abre el modal de edición con los datos de la tarea
     const dialogRef = this.dialog.open(TaskFormModalComponent, {
       width: '500px',
       data: {
-        task: this.task, // Envía los datos de la tarea seleccionada
+        task: this.task,
       },
     });
 

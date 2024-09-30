@@ -3,10 +3,10 @@
 }
 
 .clickable-row {
-  cursor: pointer; // Cambia el cursor a pointer
+  cursor: pointer;
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #f0f0f0; // Cambia el fondo cuando se hace hover
+    background-color: #f0f0f0;
   }
 }

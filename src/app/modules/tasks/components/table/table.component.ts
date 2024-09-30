@@ -39,16 +39,14 @@ export class TableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['tasks']) {
-      // Asegúrate de que actualizas la dataSource cuando cambien las tareas
       this.dataSource.data = this.tasks;
     }
   }
 
   onPageChange(event: PageEvent) {
-    // Aquí podrías realizar una nueva petición al backend para obtener los datos de la nueva página
+    this.pageChange.emit(event);
   }
 
-  // Método para obtener los nombres de las personas asignadas, separado por comas
   getAssignedPersonNames(task: any): string {
     if (task.attributes.people && task.attributes.people.data.length > 0) {
       return task.attributes.people.data
@@ -62,7 +60,7 @@ export class TableComponent implements OnChanges {
     this.dialog.open(TaskDetailModalComponent, {
       width: '400px',
       data: task,
-      maxWidth: '90vw', // Hacer que el modal sea responsive
+      maxWidth: '90vw',
     });
   }
 }
